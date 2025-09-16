@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "pysunwoda"
+version = "0.1.0"
+description = ""
+authors = ["Filip Hultgren"]
+readme = "README.md"
+#package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.9.2"
+pymodbus = "3.8.4"
+pyserial = "3.5"
+pypdf = "5.4.0"
+requests = "2.31.0"
+fastapi = "0.100.1"
+pydantic = "2.1.1"
+uvicorn = "0.22.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
