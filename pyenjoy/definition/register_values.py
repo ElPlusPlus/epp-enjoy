@@ -59,128 +59,24 @@ maximum_discharge_power = ModbusRegister(0x5079, 1, 3, ModbusType.U16, ModbusUni
 maximum_battery_charge_current_limit = ModbusRegister(0x163F, 1, 3, ModbusType.U16, ModbusUnit.AMPERE, ModbusAccess.RW, gain=0.1)
 maximum_battery_discharge_current_limit = ModbusRegister(0x1640, 1, 3, ModbusType.U16, ModbusUnit.AMPERE, ModbusAccess.RW, gain=0.1)
 
+battery_temperature = ModbusRegister(0x1106, 1, 4, ModbusType.U16, ModbusUnit.CELSIUS, ModbusAccess.RO, gain=0.1)
+battery_soc = ModbusRegister(0x1107, 1, 4, ModbusType.U16, ModbusUnit.PERCENTAGE, ModbusAccess.RO, gain=1)
+battery_soh = ModbusRegister(0x1120, 1, 4, ModbusType.U16, ModbusUnit.PERCENTAGE, ModbusAccess.RO, gain=1)
 
+battery_max_charge_voltage = ModbusRegister(0x1109, 1, 4, ModbusType.U16, ModbusUnit.VOLT, ModbusAccess.RO, gain=0.1)
+battery_max_charge_current = ModbusRegister(0x110A, 2, 4, ModbusType.U32, ModbusUnit.AMPERE, ModbusAccess.RO, gain=0.01)
+battery_max_discharge_voltage = ModbusRegister(0x110C, 1, 4, ModbusType.U16, ModbusUnit.VOLT, ModbusAccess.RO, gain=0.1)
+battery_max_discharge_current = ModbusRegister(0x110D, 2, 4, ModbusType.U32, ModbusUnit.AMPERE, ModbusAccess.RO, gain=0.01)
 
+battery_remain_capacity = ModbusRegister(0x1121, 2, 4, ModbusType.U32, ModbusUnit.WH, ModbusAccess.RO, gain=1)
+battery_charge_capacity = ModbusRegister(0x1123, 2, 4, ModbusType.U32, ModbusUnit.WH, ModbusAccess.RO, gain=1)
+battery_discharge_capacity = ModbusRegister(0x1125, 2, 4, ModbusType.U32, ModbusUnit.WH, ModbusAccess.RO, gain=1)
 
+battery_daily_accumulate_charge_capacity = ModbusRegister(0x1127, 2, 4, ModbusType.U32, ModbusUnit.WH, ModbusAccess.RO, gain=1)
+battery_daily_accumulate_discharge_capacity = ModbusRegister(0x1129, 2, 4, ModbusType.U32, ModbusUnit.WH, ModbusAccess.RO, gain=1)
 
+battery_history_accumulate_charge_capacity = ModbusRegister(0x112B, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=1)
+battery_history_accumulate_discharge_capacity = ModbusRegister(0x112D, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=1)
 
-# System
-serial_number = ModbusRegister(70, 8, 4, ModbusType.STRING, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-inverter_model = ModbusRegister(108, 15, 4, ModbusType.STRING, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-ems_software_version_code = ModbusRegister(151, 2, 4, ModbusType.STRING, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-ems_software_version = ModbusRegister(57, 2, 4, ModbusType.U32, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-dc_software_version_code = ModbusRegister(152, 2, 4, ModbusType.STRING, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-dc_software_version = ModbusRegister(62, 2, 4, ModbusType.U32, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-inv_software_version_code = ModbusRegister(154, 2, 4, ModbusType.STRING, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-inv_software_version = ModbusRegister(60, 2, 4, ModbusType.U32, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-rated_power_of_inverter = ModbusRegister(83, 1, 4, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-
-secondary_working_mode_of_system = ModbusRegister(2, 1, 4, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-system_working_state = ModbusRegister(3, 1, 4, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-primary_working_mode_of_system = ModbusRegister(4, 1, 4, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-
-pv_working_mode = ModbusRegister(10, 1, 4, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-pv_working_state = ModbusRegister(11, 1, 4, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-
-battery_work_status = ModbusRegister(69, 1, 4, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-
-dc_operating_status = ModbusRegister(427, 1, 4, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-
-# Real time data
-inverter_grid_phase_a_voltage = ModbusRegister(410, 1, 4, ModbusType.U16, ModbusUnit.VOLT, ModbusAccess.RO, gain=0.1)
-inverter_grid_phase_b_voltage = ModbusRegister(411, 1, 4, ModbusType.U16, ModbusUnit.VOLT, ModbusAccess.RO, gain=0.1)
-inverter_grid_phase_c_voltage = ModbusRegister(412, 1, 4, ModbusType.U16, ModbusUnit.VOLT, ModbusAccess.RO, gain=0.1)
-
-inverter_phase_a_voltage = ModbusRegister(312, 1, 4, ModbusType.U16, ModbusUnit.VOLT, ModbusAccess.RO, gain=0.1)
-inverter_phase_b_voltage = ModbusRegister(313, 1, 4, ModbusType.U16, ModbusUnit.VOLT, ModbusAccess.RO, gain=0.1)
-inverter_phase_c_voltage = ModbusRegister(314, 1, 4, ModbusType.U16, ModbusUnit.VOLT, ModbusAccess.RO, gain=0.1)
-
-inverter_phase_a_frequency = ModbusRegister(315, 1, 4, ModbusType.U16, ModbusUnit.HERTZ, ModbusAccess.RO, gain=0.01)
-inverter_phase_b_frequency = ModbusRegister(316, 1, 4, ModbusType.U16, ModbusUnit.HERTZ, ModbusAccess.RO, gain=0.01)
-inverter_phase_c_frequency = ModbusRegister(317, 1, 4, ModbusType.U16, ModbusUnit.HERTZ, ModbusAccess.RO, gain=0.01)
-
-inverter_phase_a_current = ModbusRegister(318, 1, 4, ModbusType.S16, ModbusUnit.AMPERE, ModbusAccess.RO, gain=0.1)
-inverter_phase_b_current = ModbusRegister(319, 1, 4, ModbusType.S16, ModbusUnit.AMPERE, ModbusAccess.RO, gain=0.1)
-inverter_phase_c_current = ModbusRegister(320, 1, 4, ModbusType.S16, ModbusUnit.AMPERE, ModbusAccess.RO, gain=0.1)
-
-inverter_phase_a_active_power = ModbusRegister(321, 1, 4, ModbusType.S16, ModbusUnit.WATT, ModbusAccess.RO, gain=1)
-inverter_phase_b_active_power = ModbusRegister(322, 1, 4, ModbusType.S16, ModbusUnit.WATT, ModbusAccess.RO, gain=1)
-inverter_phase_c_active_power = ModbusRegister(323, 1, 4, ModbusType.S16, ModbusUnit.WATT, ModbusAccess.RO, gain=1)
-
-inverter_total_active_power = ModbusRegister(330, 1, 4, ModbusType.S16, ModbusUnit.WATT, ModbusAccess.RO, gain=1)
-
-homeload_total_active_power = ModbusRegister(408, 1, 4, ModbusType.S16, ModbusUnit.WATT, ModbusAccess.RO, gain=1)
-
-pv1_power = ModbusRegister(387, 1, 4, ModbusType.S16, ModbusUnit.WATT, ModbusAccess.RO, gain=1)
-pv2_power = ModbusRegister(390, 1, 4, ModbusType.S16, ModbusUnit.WATT, ModbusAccess.RO, gain=1)
-
-# Battery
-battery_power = ModbusRegister(420, 1, 4, ModbusType.S16, ModbusUnit.WATT, ModbusAccess.RO, gain=1)
-battery_soc = ModbusRegister(422, 1, 4, ModbusType.U16, ModbusUnit.PERCENTAGE, ModbusAccess.RO, gain=1)
-battery_voltage = ModbusRegister(429, 1, 4, ModbusType.U16, ModbusUnit.VOLT, ModbusAccess.RO, gain=0.1)
-battery_current = ModbusRegister(430, 1, 4, ModbusType.S16, ModbusUnit.AMPERE, ModbusAccess.RO, gain=0.1)
-
-battery_cluster_1_number_of_clusters = ModbusRegister(600, 1, 4, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-battery_cluster_1_number_of_battery_packs = ModbusRegister(607, 1, 4, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
-battery_cluster_1_average_cell_temperature = ModbusRegister(625, 1, 4, ModbusType.S16, ModbusUnit.CELSIUS, ModbusAccess.RO, gain=0.1)
-battery_cluster_1_rated_capacity = ModbusRegister(636, 1, 4, ModbusType.S16, ModbusUnit.NONE, ModbusAccess.RO, gain=0.1)
-battery_cluster_1_charging_current_limit = ModbusRegister(638, 1, 4, ModbusType.S16, ModbusUnit.AMPERE, ModbusAccess.RO, gain=0.1)
-battery_cluster_1_discharge_current_limit = ModbusRegister(639, 1, 4, ModbusType.S16, ModbusUnit.AMPERE, ModbusAccess.RO, gain=0.1)
-battery_cluster_1_charging_power_limit = ModbusRegister(640, 1, 4, ModbusType.S16, ModbusUnit.WATT, ModbusAccess.RO, gain=1)
-battery_cluster_1_discharge_power_limit = ModbusRegister(641, 1, 4, ModbusType.S16, ModbusUnit.WATT, ModbusAccess.RO, gain=1)
-battery_cluster_1_charging_voltage_limit = ModbusRegister(659, 1, 4, ModbusType.S16, ModbusUnit.VOLT, ModbusAccess.RO, gain=0.1)
-battery_cluster_1_discharge_voltage_limit = ModbusRegister(660, 1, 4, ModbusType.S16, ModbusUnit.VOLT, ModbusAccess.RO, gain=0.1)
-battery_cluster_1_rated_power = ModbusRegister(661, 1, 4, ModbusType.S16, ModbusUnit.WATT, ModbusAccess.RO, gain=1)
-
-
-
-# Generation/consumption
-daily_pv1_power_generation = ModbusRegister(13, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-total_pv1_power_generation = ModbusRegister(15, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-daily_pv2_power_generation = ModbusRegister(17, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-total_pv2_power_generation = ModbusRegister(19, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-daily_pv_power_generation = ModbusRegister(25, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-total_pv_power_generation = ModbusRegister(27, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-
-daily_export_grid_power = ModbusRegister(33, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-total_export_grid_power = ModbusRegister(35, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-
-daily_purchase_grid_power = ModbusRegister(37, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-total_purchase_grid_power = ModbusRegister(39, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-
-daily_consumption_homeload_power = ModbusRegister(41, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-total_consumption_homeload_power = ModbusRegister(43, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-
-daily_battery_charging_power = ModbusRegister(49, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-total_battery_charging_power = ModbusRegister(51, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-
-daily_battery_discharging_power = ModbusRegister(53, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-total_battery_discharging_power = ModbusRegister(55, 2, 4, ModbusType.U32, ModbusUnit.KWH, ModbusAccess.RO, gain=0.1)
-
-grid_frequency = ModbusRegister(336, 1, 4, ModbusType.U16, ModbusUnit.HERTZ, ModbusAccess.RO, gain=0.01)
-
-total_grid_active_power = ModbusRegister(351, 1, 4, ModbusType.S16, ModbusUnit.WATT, ModbusAccess.RO, gain=1)
-
-# RW
-active_power_actual_value_setting = ModbusRegister(5, 1, 3, ModbusType.U16, ModbusUnit.WATT, ModbusAccess.RW, gain=1)
-reactive_power_actual_value_setting = ModbusRegister(6, 1, 3, ModbusType.U16, ModbusUnit.VAR, ModbusAccess.RW, gain=1)
-
-system_primary_working_mode_setting = ModbusRegister(2, 1, 3, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RW, gain=1)
-system_secondary_working_mode_setting = ModbusRegister(3, 1, 3, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RW, gain=1)
-
-battery_charging_power_percentage_limit = ModbusRegister(261, 1, 3, ModbusType.U16, ModbusUnit.PERCENTAGE, ModbusAccess.RW, gain=1)
-battery_discharging_power_percentage_limit = ModbusRegister(262, 1, 3, ModbusType.U16, ModbusUnit.PERCENTAGE, ModbusAccess.RW, gain=1)
-battery_charging_power_limit = ModbusRegister(282, 2, 3, ModbusType.U32, ModbusUnit.WATT, ModbusAccess.RW, gain=1)
-battery_discharging_power_limit = ModbusRegister(284, 2, 3, ModbusType.U32, ModbusUnit.WATT, ModbusAccess.RW, gain=1)
-battery_charge_cut_off_soc = ModbusRegister(265, 1, 3, ModbusType.U16, ModbusUnit.PERCENTAGE, ModbusAccess.RW, gain=1)
-battery_discharge_cut_off_soc = ModbusRegister(266, 1, 3, ModbusType.U16, ModbusUnit.PERCENTAGE, ModbusAccess.RW, gain=1)
-battery_mains_charging_enabled = ModbusRegister(269, 1, 3, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RW, gain=1)
-
-# Frequent reading/writing
-hot_system_primary_working_mode_setting = ModbusRegister(930, 1, 3, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RW, gain=1)
-hot_system_secondary_working_mode_setting = ModbusRegister(931, 1, 3, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RW, gain=1)
-hot_active_power_actual_value_setting = ModbusRegister(932, 1, 3, ModbusType.U16, ModbusUnit.WATT, ModbusAccess.RW, gain=1)
-hot_battery_charging_power_percentage_limit = ModbusRegister(933, 1, 3, ModbusType.U16, ModbusUnit.PERCENTAGE, ModbusAccess.RW, gain=1)
-hot_battery_discharging_power_percentage_limit = ModbusRegister(934, 1, 3, ModbusType.U16, ModbusUnit.PERCENTAGE, ModbusAccess.RW, gain=1)
-hot_battery_charge_cut_off_soc = ModbusRegister(935, 1, 3, ModbusType.U16, ModbusUnit.PERCENTAGE, ModbusAccess.RW, gain=1)
-hot_battery_discharge_cut_off_soc = ModbusRegister(936, 1, 3, ModbusType.U16, ModbusUnit.PERCENTAGE, ModbusAccess.RW, gain=1)
+battery_charge_forbidden = ModbusRegister(0x1138, 1, 4, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
+battery_discharge_forbidden = ModbusRegister(0x1139, 1, 4, ModbusType.U16, ModbusUnit.NONE, ModbusAccess.RO, gain=1)
